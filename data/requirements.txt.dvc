@@ -1,0 +1,4 @@
+outs:
+- md5: 6bea234db62f61bfe0e0817dc96832e5
+  size: 105
+  path: requirements.txt
