@@ -1,6 +1,6 @@
 # A-B_Test_SmartAd_user_analysis
 
-## Our Pipe line design is this
+## Our Pipe line design
 
 ![Image here](./charts/mlflow.jpg)
 
