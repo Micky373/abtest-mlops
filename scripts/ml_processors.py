@@ -52,6 +52,20 @@ class ML_Processor:
         
         return df
 
+    def normalizer(self, df):
+        """
+        normalizing. turning mean to 0 and SD to 1
+        """
+        # define standard scaler
+        scaler = StandardScaler()
+        # transform data
+        scaled = pd.DataFrame(scaler.fit_transform(df))
+
+        print("standardize output...\n")
+        print(scaled.head(2))
+        print("\n")
+
+        return scaled
 
     def target_feature(self, df, f_r, t):
         """
