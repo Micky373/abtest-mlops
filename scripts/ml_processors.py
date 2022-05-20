@@ -32,9 +32,7 @@ class ML_Processor:
             encoder = LabelEncoder()
             df[column] = encoder.fit_transform(df[column])
         
-        print("cat_labeler output...\n")
-        print(df.head(2))
-        print("\n")
+        print("catagories successfully labeled")
 
         return df
 
@@ -46,9 +44,7 @@ class ML_Processor:
         scaling = MinMaxScaler()
         df[:] = scaling.fit_transform(df[:])
 
-        print("scaler output... \n")
-        print(df.head(2))
-        print("\n")
+        print("Data successfully scaled")
         
         return df
 
@@ -61,9 +57,7 @@ class ML_Processor:
         # transform data
         scaled = pd.DataFrame(scaler.fit_transform(df))
 
-        print("standardize output...\n")
-        print(scaled.head(2))
-        print("\n")
+        print("Data successfully normalized")
 
         return scaled
 
@@ -74,9 +68,7 @@ class ML_Processor:
         features = df.iloc[:,f_r[0]:f_r[1]].values
         target = df.iloc[:,t].values
         
-        print("target_features output... \n")
-        print("features size: {}".format(features.shape))
-        print("\n")
+        print("target and features separated")
 
         return features, target
 
@@ -90,13 +82,7 @@ class ML_Processor:
         x_train, x_test, y_train, y_test = train_test_split(features, target,test_size= per_1,shuffle = True, random_state = rand_state )
         x_train, x_val, y_train, y_val = train_test_split(x_train, y_train,test_size= per_2, shuffle = True, random_state = rand_state)
 
-        print("set_splitter output... \n")
-        print("X_train shape: {}".format(x_train.shape))
-        print("y_train shape: {}".format(y_train.shape))
-        print("x_test shape: {}".format(x_test.shape))
-        print("y_test shape: {}".format(y_test.shape))
-        print("X_val shape: {}".format(x_val.shape))
-        print("y_val shape: {}".format(y_val.shape))
+        print("data successfully splitted")
 
 
         return [x_train, y_train, x_test, y_test, x_val, y_val]
