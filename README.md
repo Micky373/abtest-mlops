@@ -50,7 +50,7 @@ SmartAd ran this campaign from 3-10 July 2020. The users that were presented wit
 ## Features
 
 ### Data Processing and Analysis
-  - 
+  - Found in the notebook folder
 ### Scripts
  - All the scripts used by the notebooks are inside the scripts folder.
 
