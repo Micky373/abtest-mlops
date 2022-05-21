@@ -1,7 +1,5 @@
 [core]
-    autostage = true
     remote = x_rem
+    autostage = true
 ['remote "x_rem"']
     url = gdrive://1GBVS9SYQb85KVnV0E4_qaUMG_zGgnLDX
-    gdrive_use_service_account = true
-    gdrive_service_account_json_file_path = key.json
