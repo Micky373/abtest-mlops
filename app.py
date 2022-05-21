@@ -1,18 +1,16 @@
 import streamlit as st
 from multiapp import MultiApp
-from apps import user_engagement, user_experience, user_overview, user_satisfaction # import your app modules here
+from apps import user_engagement, user_overview # import your app modules here
 
 app = MultiApp()
 
-st.sidebar.markdown('# **Tellco Customers Analysis**')
+st.sidebar.markdown('# **A/B testing for SmartAd BIO**')
 st.sidebar.markdown("""
-Before investing on a business it is a must to have best understanding about the field. This project is all about analyzing TellCo's user and find out whether it is worth buying or selling.
+The repo is all about A/B testing by using two groups the exposed and control group. The exposed group were given the smart ad about brand LUX where as the control groups were given some dummy ad about the brand LUX. Classical and Statistical A/B testing has been used to test. After all the tests our aim is to increase the efficiency of our BIO (Brand Impact Optimization)
 """)
 
 # Add all your application here
-app.add_app("User Overview", user_overview.app)
-app.add_app("User Engagement", user_engagement.app)
-app.add_app("User Experience", user_experience.app)
-app.add_app("User Satisfaction", user_satisfaction.app)
+app.add_app("Data sets", user_overview.app)
+app.add_app("Model and accuracies", user_engagement.app)
 # The main app
 app.run()
