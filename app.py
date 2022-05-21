@@ -1,6 +1,6 @@
 import streamlit as st
 from multiapp import MultiApp
-from apps import user_engagement, user_overview # import your app modules here
+from apps import dataset_display,model_accuracy_display # import your app modules here
 
 app = MultiApp()
 
@@ -10,7 +10,7 @@ The repo is all about A/B testing by using two groups the exposed and control gr
 """)
 
 # Add all your application here
-app.add_app("Data sets", user_overview.app)
-app.add_app("Model and accuracies", user_engagement.app)
+app.add_app("Data sets", dataset_display.app)
+app.add_app("Model and accuracies", model_accuracy_display.app)
 # The main app
 app.run()
