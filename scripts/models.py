@@ -6,6 +6,9 @@ import xgboost as xgb
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.metrics import accuracy_score, confusion_matrix
+
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import KFold
 # To Visualize Data
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -15,6 +18,22 @@ class ML_Models:
     """
     It returns different models
     """
+    def cross_val(self, data, model, namespace, kfold, f_r, t = -1):
+
+        def namestr(obj, namespace):
+            return [name for name in namespace if namespace[name] is obj]
+
+        X = data.iloc[:,f_r[0]:f_r[1]]
+        y = data.iloc[:,t]
+        results=cross_val_score(model,X,y,cv=kfold)
+        name = namestr(data, namespace)
+        print(f'Result of {name[0]}\n')
+        print(results)
+        print(np.mean(results),'\n')
+        print('#################################')
+        print('\n')
+
+
     def evaluate_model(self, model, df, x_test, y_test, alg):
         pred_xgb = model.predict(x_test)
         accuracy = accuracy_score(pred_xgb, y_test)
@@ -22,7 +41,7 @@ class ML_Models:
         print("the loss function is: ", model.objective)
 
         sorted_idx = model.feature_importances_.argsort()
-        columns = np.array(df.columns.to_list()[:5])
+        columns = np.array(df.columns.to_list()[:6])
         plt.barh(columns[sorted_idx], model.feature_importances_[sorted_idx])
         plt.xlabel(alg+" Feature Importance")
 
