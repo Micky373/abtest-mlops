@@ -13,6 +13,10 @@ from sklearn.model_selection import KFold
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+import mlflow as MLflow
+import mlflow.sklearn
+MLflow.set_experiment(experiment_name="different machine learning algorithms")
+
 
 class ML_Models:
     """
@@ -34,11 +38,26 @@ class ML_Models:
         print('\n')
 
 
-    def evaluate_model(self, model, df, x_test, y_test, alg):
-        pred_xgb = model.predict(x_test)
-        accuracy = accuracy_score(pred_xgb, y_test)
+    def evaluate_model(self, model, df, x_test, y_test, alg, namespace):
+        
+        def namestr(obj, namespace):
+            return [name for name in namespace if namespace[name] is obj]
+
+        df_name = namestr(df, namespace)
+        
+        pred = model.predict(x_test)
+        accuracy = accuracy_score(pred, y_test)
         print("The model accuracy is: ", accuracy)
         print("the loss function is: ", model.objective)
+
+        
+
+        with MLflow.start_run():
+            MLflow.log_metric(f'accuracy for {df_name[0]}', accuracy) #metric logging
+            if(alg == "XGBoost"):
+                MLflow.xgboost.log_model(model, f'model for {df_name[0]}') #model logging
+            elif(alg == "Linear Regression"):
+                MLflow.sklearn.log_model(model, f'model for {df_name[0]}') #model logging
 
         sorted_idx = model.feature_importances_.argsort()
         columns = np.array(df.columns.to_list()[:6])
@@ -55,7 +74,7 @@ class ML_Models:
         n_estimators=1000,
         eval_metric='rmse',
         )
-        
+        MLflow.xgboost.autolog()
         xgb_param = model.get_xgb_params()
         xgtrain = xgb.DMatrix(x_train, label=y_train)
         cvresult = xgb.cv(xgb_param, xgtrain, num_boost_round=model.get_params()['n_estimators'], nfold=5,
