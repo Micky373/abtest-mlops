@@ -12,8 +12,14 @@ class ML_Processor:
     """
     def __init__(self) -> None:
         pass
+    
+    
+    # def drop_cols(self, df ):
+    #     columns_to_be_dropped = ['no','SAID_YES']
+    #     cleaned = df.drop(columns_to_be_dropped,axis=1)
+    #     return cleaned
 
-
+    
     def sep_cat_num(self, df):
         """
         separates categorical and numerical variables
