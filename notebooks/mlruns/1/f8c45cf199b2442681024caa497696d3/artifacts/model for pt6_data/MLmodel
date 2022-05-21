@@ -1,0 +1,16 @@
+artifact_path: model for pt6_data
+flavors:
+  python_function:
+    data: model.xgb
+    env: conda.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.9.7
+  xgboost:
+    code: null
+    data: model.xgb
+    model_class: xgboost.sklearn.XGBClassifier
+    xgb_version: 1.5.0
+mlflow_version: 1.26.0
+model_uuid: ca3178cbd8734803ad419f653322b26d
+run_id: f8c45cf199b2442681024caa497696d3
+utc_time_created: '2022-05-21 08:45:57.766440'
