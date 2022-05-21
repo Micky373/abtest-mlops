@@ -1,0 +1,16 @@
+artifact_path: model for fb_data
+flavors:
+  python_function:
+    data: model.xgb
+    env: conda.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.9.7
+  xgboost:
+    code: null
+    data: model.xgb
+    model_class: xgboost.sklearn.XGBClassifier
+    xgb_version: 1.5.0
+mlflow_version: 1.26.0
+model_uuid: 34e90bb719d34d2095bcbef4ec52eb10
+run_id: c2cb3f9973e74059bc5e0a8515180714
+utc_time_created: '2022-05-21 19:24:59.362478'
