@@ -1,7 +1,7 @@
 import streamlit as st
 
 def app():
-    st.title('This is the User Engagement page')
+    st.title('In this page we display all the model\'s accuracy')
 
     st.title('The accuracy of our logistic regression model')
     st.image('https://miro.medium.com/max/700/0*qsNLyfWDUcCnOA-i.png')
