@@ -9,12 +9,14 @@ from sklearn.metrics import accuracy_score, confusion_matrix
 
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import KFold
+from sklearn.linear_model import LogisticRegression
 # To Visualize Data
 import matplotlib.pyplot as plt
 import seaborn as sns
 
 import mlflow as MLflow
 import mlflow.sklearn
+import math
 MLflow.set_experiment(experiment_name="different machine learning algorithms")
 
 
@@ -45,10 +47,18 @@ class ML_Models:
 
         df_name = namestr(df, namespace)
         
-        pred = model.predict(x_test)
-        accuracy = accuracy_score(pred, y_test)
-        print("The model accuracy is: ", accuracy)
-        print("the loss function is: ", model.objective)
+        if(alg=="Linear Regression"):
+            
+            coefitients = model.coef_
+            accuracy = model.score(x_test,y_test)
+            print("The model accuracy is: ", accuracy)
+
+        elif(alg=="XGBoost"):
+            coefitients = model.feature_importances_
+            pred = model.predict(x_test)
+            accuracy = accuracy_score(pred, y_test)
+            print("The model accuracy is: ", accuracy)
+            
 
         
 
@@ -59,10 +69,18 @@ class ML_Models:
             elif(alg == "Linear Regression"):
                 MLflow.sklearn.log_model(model, f'model for {df_name[0]}') #model logging
 
-        sorted_idx = model.feature_importances_.argsort()
+        
+
+        columns = np.array(df.columns.to_list()[:6])
+        feature_importance = pd.DataFrame(columns,columns=['Feature'])
+        feature_importance['Feature\'s importance'] = pow(math.e,np.array(coefitients[0]))
+        feature_importance.plot.bar(x='Feature', y="Feature's importance", rot=90)
+        plt.title(alg+" Feature Importance")
+
+        """ sorted_idx = model.feature_importances_.argsort()
         columns = np.array(df.columns.to_list()[:6])
         plt.barh(columns[sorted_idx], model.feature_importances_[sorted_idx])
-        plt.xlabel(alg+" Feature Importance")
+        plt.xlabel(alg+" Feature Importance") """
 
     def xgb_model(self, x_train, y_train, x_val, y_val):
         """
@@ -88,5 +106,11 @@ class ML_Models:
         )
 
         return model
+
+    def regression_model(self, x_train, y_train):
+        model_fb = LogisticRegression()
+        model_fb.fit(x_train,y_train)
+
+        return model_fb
 
     
