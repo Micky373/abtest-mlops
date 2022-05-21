@@ -4,6 +4,10 @@
 
 ![Image here](./charts/mlflow.jpg)
 
+## Live demo to the project result
+
+- [Streamlit](https://share.streamlit.io/micky373/abtest-mlops/main/app.py)
+
 **Table of content**
 
 - [Smart Ad user analytics](#A-B_Test_SmartAd_user_analysis)
@@ -46,7 +50,7 @@ SmartAd ran this campaign from 3-10 July 2020. The users that were presented wit
 ## Features
 
 ### Data Processing and Analysis
-  - 
+  - Found in the notebook folder
 ### Scripts
  - All the scripts used by the notebooks are inside the scripts folder.
 
