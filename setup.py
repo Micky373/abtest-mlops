@@ -12,7 +12,7 @@ requirements = ['pandas>=1.1.0', 'numpy>=1.19.0', ]
 test_requirements = ['pytest>=3', ]
 
 setup(
-    author="Biniam Belayneh, Meron Abate, Hirwa Cline, Michael Tamirie",
+    author="Biniam Belayneh, Meron Abate, Hirwa Celine, Michael Tamirie",
     email="michaeltamirie@gmail.com",
     python_requires='>=3.6',
     classifiers=[
