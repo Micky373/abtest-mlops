@@ -1,0 +1,4 @@
+outs:
+- md5: 6b04dd262e37f39242b6d8379351ae70
+  size: 18024
+  path: chrome_mobile_webView_data.csv
