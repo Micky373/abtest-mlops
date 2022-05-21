@@ -1,0 +1,22 @@
+name: model-training
+on: [push]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - uses: iterative/setup-cml@v1
+      - name: Train model
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GDRIVE_DATA_CREDENTIALS: ${{ secrets.GDRIVE_CREDENTIALS }}
+        run: |
+          pip install -r requirements.txt
+          pip install 'dvc[gdrive]'
+          dvc pull --run-cache    
+          python train_1.py
+          echo "## Result of the model"
+          cat ./output/fb_data.json >> report.md
+          cml publish fb_data.png --md >> report.md
+          cml send-comment report.md

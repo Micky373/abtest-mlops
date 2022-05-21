@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/IRONMAN/10/10x/abtest-mlops/mlruns/1/da00a35b05e245d29a6d2dabbb3a6027/artifacts
+end_time: 1653168728475
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: active
+name: ''
+run_id: da00a35b05e245d29a6d2dabbb3a6027
+run_uuid: da00a35b05e245d29a6d2dabbb3a6027
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1653168713262
+status: 3
+tags: []
+user_id: IRONMAN

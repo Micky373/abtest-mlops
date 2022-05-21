@@ -17,6 +17,7 @@ import seaborn as sns
 import mlflow as MLflow
 import mlflow.sklearn
 import math
+import json
 MLflow.set_experiment(experiment_name="different machine learning algorithms")
 
 
@@ -52,6 +53,12 @@ class ML_Models:
             coefitients = model.coef_
             accuracy = model.score(x_test,y_test)
             print("The model accuracy is: ", accuracy)
+            
+
+            output = {'accuracy': accuracy}
+
+            with open('./output/'+str(df_name[0])+'.json', 'w') as json_file:
+                json.dump(output, json_file)
 
             columns = np.array(df.columns.to_list()[:6])
             feature_importance = pd.DataFrame(columns,columns=['Feature'])
@@ -65,10 +72,16 @@ class ML_Models:
             accuracy = accuracy_score(pred, y_test)
             print("The model accuracy is: ", accuracy)
 
+            output = {'accuracy': accuracy}
+
+            with open('./output/'+str(df_name[0])+'.json', 'w') as json_file:
+                json.dump(output, json_file)
+
             sorted_idx = model.feature_importances_.argsort()
             columns = np.array(df.columns.to_list()[:6])
             plt.barh(columns[sorted_idx], model.feature_importances_[sorted_idx])
             plt.xlabel(alg+" Feature Importance")
+            plt.savefig("./charts/"+str(df_name[0])+".png")
             
         with MLflow.start_run():
             MLflow.log_metric(f'accuracy for {df_name[0]}', accuracy) #metric logging
