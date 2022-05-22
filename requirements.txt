@@ -7,5 +7,6 @@ seaborn
 plotly
 pandasql
 streamlit
+dvc
 sklearn
 xgboost
