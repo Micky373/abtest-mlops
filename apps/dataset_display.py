@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import dvc.api
 
-import pandas
+
 
 with dvc.api.open(
 
@@ -14,7 +14,7 @@ with dvc.api.open(
 
 ) as fd:
 
-    df = pandas.read_csv(fd)
+
 def app():
     st.title('In this page we display all the datasets')
     
